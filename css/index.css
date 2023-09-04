@@ -1,0 +1,282 @@
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+  margin-right: 3px;
+}
+
+@font-face {
+  font-family: 'aaaaaaaaaaaa';
+  src: url(../font/Strange\ Dreams.otf);
+}
+
+
+.ctn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 36px;
+  height: 100%;
+}
+
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background: rgb(174, 202, 242);
+  font-size: 14px;
+  font-family: aaaaaaaaaaaa;
+  overflow: hidden;
+}
+
+.con {
+  /* max-width: 37.5rem; */
+  min-width: 2.1875rem;
+  margin: 0 auto;
+}
+
+#aword {
+  position: fixed;
+  top: 0;
+  display: block;
+  width: 100%;
+  height: 20px;
+  background: rgba(133, 133, 133, 0.5);
+  backdrop-filter: blur(15px);
+  font-size: 12px;
+  color: #fff;
+  text-align: center;
+  line-height: 20px;
+}
+
+#header {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+/* 轮播 */
+#header .swiper {
+  width: 95%;
+  height: 90%;
+  border-radius: 6px;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, .5);
+  /*考虑浏览器兼容性*/
+  -moz-box-shadow: 0px 3px 5px rgba(0, 0, 0, .5);
+  -webkit-box-shadow: 0px 3px 5px rgba(0, 0, 0, .5);
+  /* 分页器颜色 */
+  --swiper-theme-color: #ff6600;
+  /* 单独设置按钮颜色 */
+  --swiper-navigation-color: #e6e6e6;
+  /* 设置按钮大小 */
+  --swiper-navigation-size: 20px;
+}
+
+#header .swiper .swiper-wrapper img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+}
+
+/* -------------------主体--------------------------------------  */
+#theme {
+  height: auto;
+  /* box-shadow: 0px 0px 10px 15px rgb(174, 202, 242), 0px 0px 90px 25px rgb(174, 202, 242), 0px 0px 90px 25px rgb(255, 255, 255); */
+  padding-top: 10px;
+  width: 95%;
+  flex-grow: 1;
+}
+
+#theme>p {
+  margin-left: 20px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-size: .875rem;
+  color: rgb(73, 73, 73);
+  text-shadow: 5px 5px 6px rgba(0, 0, 0, .3);
+}
+
+#theme .box {
+  /* width: 95%; */
+  height: 100%;
+  margin: 0 auto;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
+  /* display: grid;
+  grid-template-columns: 48% 48%;
+  grid-template-rows: auto auto auto; */
+  /* grid-template-rows: 30% 30% 30%; */
+  justify-content: space-between;
+  overflow-y: scroll;
+  box-sizing: border-box;
+}
+
+#theme .box>div {
+  height: 80px;
+  width: 40%;
+  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 10px 15px;
+  box-shadow: 0 0 10px 0px rgb(175, 175, 175);
+  cursor: pointer;
+  transition: transform .5s;
+  flex-shrink: 0;
+}
+
+#theme .box>div:hover {
+  box-shadow: 0 0 10px 0px rgb(116, 116, 116);
+  transform: translateY(-5px);
+}
+
+#theme .box>div .icu {
+  width: 100%;
+  height: 30px;
+  display: flex;
+}
+
+#theme .box>div .icu img {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  margin-right: 5px;
+}
+
+#theme .box>div .icu>h3 {
+  width: 100%;
+  line-height: 30px;
+  font-size: 1rem;
+  font-weight: 700;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#theme .box>div .text {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+#theme .box>div .text>p {
+  width: 100%;
+  font-size: .875rem;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#theme .box>div .text .t {
+  position: absolute;
+  bottom: -18px;
+  right: 0;
+  color: black;
+  font-size: 14px;
+}
+
+/* -------------------页脚--------------------------------------  */
+#footer {
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#footer p {
+  font-size: 12px;
+  color: rgb(19, 19, 19);
+  margin-bottom: 6px;
+}
+
+
+
+/*****************************************************************************************************/
+
+/* 移动设备优先：超小屏幕 超小型设备（手机，768px以下） ​ 小屏幕 768px-992px */
+/* @media screen and (min-width:768px) {
+  #theme {
+    box-shadow: 0 0 0 0 red;
+    border: 1px solid #000;
+  }
+} */
+
+/* 小型设备（平板电脑，768px 以上） */
+/* @media screen and (min-width:520px) {
+  .con {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0);
+    font-size: 14px;
+  }
+
+  #header {}
+
+  #header .bg {}
+
+  #header .swiper {
+    max-width: 800px;
+  }
+
+  #header .bg .user {
+    background: rgba(0, 0, 0, 0.301);
+    color: #fff;
+  }
+
+
+  #theme {
+    box-shadow: none;
+    border: 1px solid rgb(240, 238, 237);
+    background: rgb(240, 238, 237);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  #theme>p {
+    font-size: 1.375rem;
+    color: rgba(255, 255, 255, 0);
+  }
+
+  #theme .aword {
+    color: rgb(24, 24, 24);
+    font-size: 14px;
+    text-shadow: 5px 5px 6px rgba(0, 0, 0, .3);
+  }
+
+  #theme .box {
+    隐藏滚动条
+    scrollbar-width: none;
+    firefox
+    -ms-overflow-style: none;
+    IE 10+
+    padding: 10px;
+  }
+
+  #footer {}
+}
+
+中型设备（台式电脑，大屏幕 大于1200px）
+
+@media screen and (min-width:1200px) {} */

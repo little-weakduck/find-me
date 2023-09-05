@@ -2,7 +2,7 @@
  * @Author: Little_WeakDuck
  * @Date: 2023-02-23 17:58:36
  * @LastEditors: Little_WeakDuck
- * @LastEditTime: 2023-09-05 16:56:45
+ * @LastEditTime: 2023-09-05 17:05:44
  * @FilePath: /index.html
  * @Description: 
 -->
@@ -222,7 +222,7 @@
            * @return {*}
            */
           sendMail(mail) {
-            let newWindows = window.open(`mailto:${mail}`);
+            let newWindow = window.open(`mailto:${mail}`);
             if (!newWindow || typeof newWindow.closed == "undefined" || newWindow.closed) {
               // 如果无法打开新窗口（可能是因为浏览器阻止了弹出窗口，或者用户没有设置默认邮件客户端），则复制链接到剪贴板
               this.copy(mail, "已成功复制邮箱到剪贴板", "邮箱");

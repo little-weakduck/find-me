@@ -131,53 +131,84 @@
   <script>
     new Vue(
       {
-      el: "#app",
-      data: function () {
-        return { visible: false };
-      },
-      created() {
-        //  一言
-        fetch("https://v1.hitokoto.cn/")
-          .then((res) => res.json())
-          .then((res) => {
-            document.querySelector("#aword").innerHTML = res.hitokoto + `-- ${res.from}`;
-          });
-      },
-      methods: {
-        open() {
-          this.visible = true;
+        el: "#app",
+        data: function () {
+          return { visible: false };
         },
-        gotoPurpose(url) {
-          window.open(url);
+        created() {
+          //  一言
+          fetch("https://v1.hitokoto.cn/")
+            .then((res) => res.json())
+            .then((res) => {
+              document.querySelector("#aword").innerHTML = res.hitokoto + `-- ${res.from}`;
+            });
         },
-        copy(content, message) {
-          navigator.clipboard.writeText(content).then(
-            () => {
-              this.$alert(message, '复制成功', {
-                confirmButtonText: '确定',
+        methods: {
+          open() {
+            this.visible = true;
+          },
+          gotoPurpose(url) {
+            window.open(url);
+          },
+          copy(content, message) {
+            navigator.clipboard.writeText(content).then(() => {
+              this.$alert(message, '复制成功', { confirmButtonText: '确定' })
+            }, function (err) {
+              console.error("无法复制. 使用降级方案.", err);
+              this.fallbackCopyTextToClipboard(content).then(() => {
+                this.$alert(message, '复制成功', { confirmButtonText: '确定' })
+              }, function (err) {
+                console.error("降级方案: 无法复制", err);
               })
-            },
-            function (err) {
-              console.error("无法复制: ", err);
+            });
+          },
+          sendMail(mail) {
+            let newWindows = window.open(`mailto:${mail}`);
+            if (!newWindow || newWindow.closed || typeof newWindow.closed == "undefined") {
+              // 如果无法打开新窗口（可能是因为浏览器阻止了弹出窗口，或者用户没有设置默认邮件客户端），则复制链接到剪贴板
+              this.copy(mail, "已成功复制邮箱到剪贴板");
             }
-          );
-        },
-        sendMail(mail) {
-          let newWindows = window.open(`mailto:${mail}`);
-          if (!newWindow || newWindow.closed || typeof newWindow.closed == "undefined") {
-            // 如果无法打开新窗口（可能是因为浏览器阻止了弹出窗口，或者用户没有设置默认邮件客户端），则复制链接到剪贴板
-            this.copy(mail, "已成功复制邮箱到剪贴板");
+          },
+          callMe() {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
+              window.location.href = "tel:+8615623607086";
+            } else {
+              this.copy('+8615623607086', "已成功复制电话号码到剪贴板");
+            }
+          },
+          fallbackCopyTextToClipboard(text) {
+            return new Promise((resolve, reject) => {
+              var textArea = document.createElement("textarea");
+              textArea.value = text;
+
+              // 隐藏textArea
+              textArea.style.position = 'fixed';
+              textArea.style.top = 0;
+              textArea.style.left = 0;
+              textArea.style.width = '2em';
+              textArea.style.height = '2em';
+
+              document.body.appendChild(textArea);
+
+              textArea.focus();
+              textArea.select();
+
+              try {
+                var successful = document.execCommand('copy');
+                var msg = successful ? 'successful' : 'unsuccessful';
+                console.log('Fallback: Copying was ' + msg);
+                resolve()
+              } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+                reject(err)
+              }
+
+              document.body.removeChild(textArea);
+            })
           }
+
         },
-        callMe() {
-          if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
-            window.location.href = "tel:+8615623607086";
-          } else {
-            this.copy('+8615623607086', "已成功复制电话号码到剪贴板");
-          }
-        }
-      },
-    });
+      });
   </script>
 </body>
 

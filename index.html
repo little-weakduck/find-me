@@ -170,7 +170,7 @@
             }
           },
           callMe() {
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|HarmonyOS/i.test(navigator.userAgent)) {
               window.location.href = "tel:+8615623607086";
             } else {
               this.copy('+8615623607086', "已成功复制电话号码到剪贴板");
